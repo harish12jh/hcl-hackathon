@@ -3,6 +3,7 @@ import { categories } from "../constants/productlist";
 
 const Dropdown = () => {
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("");
   return (
     <div class="relative inline-block text-left">
       <div>
@@ -14,7 +15,7 @@ const Dropdown = () => {
           aria-haspopup="true"
           onClick={() => setOpen(!open)}
         >
-          Categories
+          {selected === "" ? "Categories" : selected}
           <svg
             class="-mr-1 size-5 text-gray-400"
             viewBox="0 0 20 20"
@@ -32,24 +33,26 @@ const Dropdown = () => {
       </div>
       {open && (
         <div
-          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden"
+          class="absolute right-0 z-10 mt-2 w-fit origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
           tabindex="-1"
         >
-          <div class="py-1" role="none">
+          <div class="py-1 w-fit" role="none">
             {categories?.map((cat) => (
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700"
+              <span
+                class="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
                 role="menuitem"
                 tabindex="-1"
                 id="menu-item-0"
-                onClick={() => setOpen(!open)}
+                onClick={(e) => {
+                  setSelected(e.currentTarget.innerText);
+                  setOpen(!open);
+                }}
               >
                 {cat}
-              </a>
+              </span>
             ))}
           </div>
         </div>
