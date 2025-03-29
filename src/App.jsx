@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Card from "./components/Card";
 import Layout from "./components/Layout";
@@ -12,8 +12,8 @@ function App() {
     <>
       <Router basename="/">
         <Routes>
-          <Route path="/" Component={<Layout setData={setData} />}>
-            <Route index element={<Card data={data} />} />
+          <Route path="/" element={<Layout setData={(values)=>setData(values)} />}>
+            <Route path="/"  element={<Card data={data} />} />
             <Route
               path="/orders"
               element={
