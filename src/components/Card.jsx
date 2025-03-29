@@ -37,7 +37,13 @@ const Card = () => {
             <h4 class="mt-2 font-semibold text-lg leading-tight truncate">
               {product?.title}
             </h4>
-
+            <div class="mt-1">
+              <span>Details</span>
+              <p class="text-gray-600 text-sm overflow-hidden text-ellipsis">
+                {" "}
+                {" " + product.description}
+              </p>
+            </div>
             <div class="mt-1">
               <span>Price</span>
               <span class="text-gray-600 text-sm"> {" " + product.price}</span>
