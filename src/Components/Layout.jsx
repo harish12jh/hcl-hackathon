@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 
-const Layout = (setData) => {
+const Layout = ({ setData }) => {
   return (
     <>
       <NavBar setData={(values) => setData(values)}>
