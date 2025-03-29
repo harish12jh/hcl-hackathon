@@ -2,10 +2,10 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 
-const Layout = () => {
+const Layout = (setData) => {
   return (
     <>
-      <NavBar>
+      <NavBar setData={(values) => setData(values)}>
         <div className="w-full max-h-[500px]">
           <Outlet />
         </div>

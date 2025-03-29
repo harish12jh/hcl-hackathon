@@ -7,11 +7,12 @@ import Loader from "./components/utils/Loader";
 const LazyLoadOrders = lazy(() => import("./components/Orders"));
 
 function App() {
+  const [data, setData] = useState([]);
   return (
     <>
       <Router basename="/">
         <Routes>
-          <Route path="/" Component={Layout}>
+          <Route path="/" Component={<Layout setData={setData} />}>
             <Route index element={<Card data={data} />} />
             <Route
               path="/orders"
