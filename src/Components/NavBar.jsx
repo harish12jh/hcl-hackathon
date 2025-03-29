@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Dropdown from "../common/Dropdown";
 // import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ children }) => {
@@ -22,6 +23,7 @@ const NavBar = ({ children }) => {
             className="w-72 rounded text-center justify-between py-1 border-white"
             onChange={handleSearchInput}
           />
+          <Dropdown />
         </div>
 
         <h3 className="flex font-bold text-lg">
