@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { categories } from "../constants/productlist";
 
-const Dropdown = () => {
+const Dropdown = ({ onChange }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
   return (
@@ -39,7 +39,7 @@ const Dropdown = () => {
           aria-labelledby="menu-button"
           tabindex="-1"
         >
-          <div class="py-1 w-fit" role="none">
+          <div class="py-1 w-40" role="none">
             {categories?.map((cat) => (
               <span
                 class="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
@@ -47,11 +47,12 @@ const Dropdown = () => {
                 tabindex="-1"
                 id="menu-item-0"
                 onClick={(e) => {
-                  setSelected(e.currentTarget.innerText);
+                  setSelected(cat.name);
+                  onChange(cat.value);
                   setOpen(!open);
                 }}
               >
-                {cat}
+                {cat.name}
               </span>
             ))}
           </div>

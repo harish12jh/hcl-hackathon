@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../App.css";
 
-const Card = () => {
+const Card = ({ data }) => {
   const [count, setCount] = useState(0);
   const [products, setProducts] = useState([]);
 
@@ -9,10 +9,25 @@ const Card = () => {
     getProducts();
   }, []);
 
+  useEffect(() => {
+    setProducts(data);
+  }, [data]);
+
   const getProducts = async () => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((response) => setProducts(response));
+  };
+
+  const addtoCart = (product) => {
+    const cart = { userId: 1, products: [{ id: product.id }] };
+    fetch("https://fakestoreapi.com/carts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cart),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
 
   return (
@@ -53,7 +68,7 @@ const Card = () => {
             <div class="mt-2 flex justify-center w-full relative mb-2">
               <button
                 type="button"
-                onClick={() => setCount(count + 1)}
+                onClick={() => addtoCart(product)}
                 class="flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 <svg
