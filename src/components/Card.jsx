@@ -18,7 +18,7 @@ const Card = () => {
   return (
     <>
       {products.map((product) => (
-        <div id={product.id}>
+        <div id={product.id} style={{display:'grid'}}>
           <div>
             <img src={product.image} className="logo" alt="Vite logo" />
           </div>
