@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "../common/Dropdown";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ children, setData }) => {
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState("");
   const [cartproducts, setCartproducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     category != "" && getProducts();
@@ -41,8 +42,8 @@ const NavBar = ({ children, setData }) => {
 
   return (
     <>
-      <nav className="bg-blue-950 text-white py-4 px-6 flex font-bold justify-between">
-        <h3 className="font-bold text-xl items-start">Shopping Cart</h3>
+      <nav className="bg-blue-950 text-white py-3 px-6 flex font-bold justify-between sticky top-0">
+        <button onClick={() => navigate("/")} className="font-bold text-xl items-start">Shopping Cart</button>
         <div className="flex justify-center items-center ml-40 border-2 border-white rounded-lg">
           <input
             type="text"
@@ -55,9 +56,9 @@ const NavBar = ({ children, setData }) => {
           />
           <Dropdown onChange={(value) => setCategory(value)} />
         </div>
-
+        <button onClick={() => navigate("/orders")}>My Orders</button>
         <h3 className="flex font-bold text-lg">Hello Guest!</h3>
-        <button className="flex items-center font-bold text-lg border-2 bg-white text-blue-900 rounded-md px-2">
+        <button onClick={() => navigate("/cart")} className="flex items-center font-bold text-lg border-2 bg-white text-blue-900 rounded-md px-2">
           <svg
             class="w-3.5 h-3.5 me-2"
             aria-hidden="true"
@@ -70,7 +71,7 @@ const NavBar = ({ children, setData }) => {
           Cart {" " + cartCount}
         </button>
       </nav>
-      <div className="flex">{children}</div>
+      <div>{children}</div>
     </>
   );
 };
